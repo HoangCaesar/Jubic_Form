@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 
 // Porject Import
 import { Header, Content } from '../../components';
+import { setData } from '../../utils/dataHandler'
 import './commentForm.css';
 
 // Interface
@@ -11,7 +12,7 @@ import { FormValues } from '../../components/form/Content';
 
 const CommentForm = () => {
     const handleSubmit = useCallback((formValues: FormValues) => {
-        console.log(formValues);
+        setData(formValues);
     }, []);
 
     return (
