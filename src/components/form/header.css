@@ -1,0 +1,7 @@
+.header-form {
+    display: flex;
+    justify-content: space-between;
+    height: 10%;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+}

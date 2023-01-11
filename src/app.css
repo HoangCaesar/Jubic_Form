@@ -1,0 +1,23 @@
+:root {
+    --bg-color: rgb(20, 20, 20);
+    --card-color: rgb(23, 23, 23);
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+
+#root {
+    height: 100%;
+}
+
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
