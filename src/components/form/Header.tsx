@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Project Import
 import './header.css';
 

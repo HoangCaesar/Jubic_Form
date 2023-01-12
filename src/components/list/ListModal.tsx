@@ -1,13 +1,13 @@
 import { memo } from 'react';
 
 // Material UI
+import CommentIcon from '@mui/icons-material/Comment';
+import DescriptionIcon from '@mui/icons-material/Description';
+import PersonIcon from '@mui/icons-material/Person';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import PersonIcon from '@mui/icons-material/Person';
-import DescriptionIcon from '@mui/icons-material/Description';
-import CommentIcon from '@mui/icons-material/Comment';
+import Typography from '@mui/material/Typography';
 
 // Types
 import Blog from '../../models/blog';
@@ -38,7 +38,11 @@ const style = {
 
 const ListModal = ({ isOpen, blog, onClose, onDelete }: ListModalProps) => {
     const handleDelete = (blog?: Blog) => {
-        onDelete(blog);
+        const isChecked = window.confirm('Are you sure you want to delete this blog?');
+        console.log(isChecked);
+        if (!!isChecked) {
+            onDelete(blog);
+        }
     };
 
     return (

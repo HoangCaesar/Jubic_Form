@@ -1,20 +1,20 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Types
 import Blog from '../../models/blog';
 
 // Project Import
-import { getData, deleteData } from '../../utils/dataHandler';
 import { BlogItem, ListModal } from '../../components';
+import { deleteData, getData } from '../../utils/dataHandler';
 import './list.css';
 
 // Redux
-import { useAppSelector, useAppDispatch } from '../../store';
-import * as blogSelectors from '../../store/reducers/blog';
+import { useAppDispatch, useAppSelector } from '../../store';
 import * as blogActions from '../../store/reducers/blog';
+import * as blogSelectors from '../../store/reducers/blog';
 
 // React-toastify
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // ==============================|| LIST - A LISFT OF BLOGS   ||============================== //
