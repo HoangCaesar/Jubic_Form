@@ -1,6 +1,10 @@
 :root {
     --bg-color: rgb(20, 20, 20);
-    --card-color: rgb(23, 23, 23);
+    --item-color: rgb(23, 23, 23);
+}
+
+*{
+    box-sizing: border-box;
 }
 
 body {
