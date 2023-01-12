@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// types
-import Blog from '../../models/blog';
-
 // initial state
 interface BlogState {
     isAdded: Boolean;

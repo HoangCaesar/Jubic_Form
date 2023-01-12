@@ -1,9 +1,7 @@
-import React from 'react';
-
 // Project Import
+import './app.css';
 import CommentForm from './features/form/CommentForm';
 import List from './features/list/List';
-import './app.css';
 
 // ==============================|| APP -   ||============================== //
 

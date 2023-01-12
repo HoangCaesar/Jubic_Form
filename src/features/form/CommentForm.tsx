@@ -12,6 +12,10 @@ import * as blogActions from '../../store/reducers/blog';
 // Interface
 import { FormValues } from '../../components/form/Content';
 
+// React-toastify
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // ==============================|| FORM - ADD A NEW COMMENT/DESCRIPTION  ||============================== //
 
 const CommentForm = () => {
@@ -19,13 +23,15 @@ const CommentForm = () => {
 
     const handleSubmit = useCallback((formValues: FormValues) => {
         setData(formValues);
-        dispatch(blogActions.newItemIsAdded())
+        dispatch(blogActions.newItemIsAdded());
+        toast.success('A new blog is added!');
     }, []);
 
     return (
         <div className="comment-form">
             <Header />
             <Content onSubmit={handleSubmit} />
+            <ToastContainer />
         </div>
     );
 };

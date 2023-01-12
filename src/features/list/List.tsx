@@ -13,6 +13,10 @@ import { useAppSelector, useAppDispatch } from '../../store';
 import * as blogSelectors from '../../store/reducers/blog';
 import * as blogActions from '../../store/reducers/blog';
 
+// React-toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // ==============================|| LIST - A LISFT OF BLOGS   ||============================== //
 
 const List = () => {
@@ -68,6 +72,7 @@ const List = () => {
         deleteData(keyItem);
         dispatch(blogActions.itemIsDeleted());
         setOpen(false);
+        toast.success('Delete successfully!');
     }, []);
 
     return (
@@ -85,6 +90,7 @@ const List = () => {
                     );
                 })}
             </div>
+            <ToastContainer />
             {open ? (
                 <ListModal
                     isOpen={open}
