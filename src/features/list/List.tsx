@@ -9,14 +9,17 @@ import { BlogItem, ListModal } from '../../components';
 import './list.css';
 
 // Redux
-import { useAppSelector } from '../../store';
+import { useAppSelector, useAppDispatch } from '../../store';
 import * as blogSelectors from '../../store/reducers/blog';
+import * as blogActions from '../../store/reducers/blog';
 
 // ==============================|| LIST - A LISFT OF BLOGS   ||============================== //
 
 const List = () => {
     // If its state changes, it means a new blog is added ---> reload our list
+    const dispatch = useAppDispatch();
     const isNewItemAdded = useAppSelector(blogSelectors.selectBlogIsAdded);
+    const isItemDeleted = useAppSelector(blogSelectors.selectBlogIsDeleted);
 
     const listRef = useRef<any>([]);
     const [blogList, setBlogList] = useState<Blog[]>([]);
@@ -30,16 +33,18 @@ const List = () => {
             .map((item) => JSON.parse(item))
             .filter((item) => item.author);
         setBlogList(blogList);
-    }, [isNewItemAdded]);
+    }, [isNewItemAdded, isItemDeleted]);
 
     const handleMouseMove = (e: any) => {
         for (const item of listRef.current) {
-            const rect = item.getBoundingClientRect(),
-                x = e.clientX - rect.left,
-                y = e.clientY - rect.top;
+            if (item) {
+                const rect = item.getBoundingClientRect(),
+                    x = e.clientX - rect.left,
+                    y = e.clientY - rect.top;
 
-            item.style.setProperty('--mouse-x', `${x}px`);
-            item.style.setProperty('--mouse-y', `${y}px`);
+                item.style.setProperty('--mouse-x', `${x}px`);
+                item.style.setProperty('--mouse-y', `${y}px`);
+            }
         }
     };
 
@@ -51,9 +56,23 @@ const List = () => {
 
     const handleClose = useCallback(() => setOpen(false), []);
 
-    const handleDelete = () => {
-        
-    };
+    const handleDelete = useCallback((blog?: Blog) => {
+        // Find the position of selected blog
+        const data = getData();
+        const valueList = Object.values(data);
+        const keyList = Object.keys(data);
+        const jsonBlog = JSON.stringify(blog);
+        const indexOfBlog = valueList.indexOf(jsonBlog);
+        const keyItem = keyList[indexOfBlog];
+        // Delete Item
+        deleteData(keyItem);
+        dispatch(blogActions.itemIsDeleted());
+        setOpen(false);
+    }, []);
+
+    const handleEdit = useCallback(() => {
+
+    }, []);
 
     return (
         <>
@@ -70,7 +89,16 @@ const List = () => {
                     );
                 })}
             </div>
-            {open ? <ListModal isOpen={open} blog={selectedBlog} onClose={handleClose} /> : ''}
+            {open ? (
+                <ListModal
+                    isOpen={open}
+                    blog={selectedBlog}
+                    onClose={handleClose}
+                    onDelete={handleDelete}
+                />
+            ) : (
+                ''
+            )}
         </>
     );
 };

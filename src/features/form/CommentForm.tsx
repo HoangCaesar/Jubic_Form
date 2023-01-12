@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
 
 // Porject Import
-import { Header, Content } from '../../components';
+import { Content, Header } from '../../components';
 import { setData } from '../../utils/dataHandler';
 import './commentForm.css';
 
 // Redux
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import * as blogActions from '../../store/reducers/blog';
 
 // Interface

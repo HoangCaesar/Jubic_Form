@@ -6,13 +6,12 @@ const setData = (data: FormValues) => {
 };
 
 const getData = () => {
-    const data = { ...localStorage }
+    const data = { ...localStorage };
     return data;
 };
 
-const deleteData = () => {
-    const data = { ...localStorage };
-    return data;
+const deleteData = (keyItem: string) => {
+    localStorage.removeItem(keyItem);
 };
 
 export { setData, getData, deleteData };

@@ -15,6 +15,7 @@ interface ListModalProps {
     isOpen: boolean;
     blog?: Blog;
     onClose: () => void;
+    onDelete: (blog?: Blog) => void;
 }
 
 // Style for Modal
@@ -35,7 +36,11 @@ const style = {
 
 // ==============================|| MODAL - FOR LIST   ||============================== //
 
-const ListModal = ({ isOpen, blog, onClose }: ListModalProps) => {
+const ListModal = ({ isOpen, blog, onClose, onDelete }: ListModalProps) => {
+    const handleDelete = (blog?: Blog) => {
+        onDelete(blog);
+    };
+
     return (
         <div>
             <Modal
@@ -83,8 +88,19 @@ const ListModal = ({ isOpen, blog, onClose }: ListModalProps) => {
                         {blog?.comment}
                     </Typography>
                     <Box mt={3} sx={{ display: 'flex', justifyContent: 'space-around' }}>
-                        <Button variant="contained" sx={{ backgroundColor: '#d50000' }}>
+                        <Button
+                            variant="contained"
+                            onClick={() => handleDelete(blog)}
+                            sx={{ backgroundColor: '#d50000' }}
+                        >
                             Delete
+                        </Button>
+                        <Button
+                            variant="contained"
+                            onClick={() => handleDelete(blog)}
+                            sx={{ backgroundColor: '#4caf50' }}
+                        >
+                            Edit
                         </Button>
                     </Box>
                 </Box>
