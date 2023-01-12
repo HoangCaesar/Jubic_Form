@@ -10,4 +10,9 @@ const getData = () => {
     return data;
 };
 
-export { setData, getData };
+const deleteData = () => {
+    const data = { ...localStorage };
+    return data;
+};
+
+export { setData, getData, deleteData };

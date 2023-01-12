@@ -103,7 +103,7 @@ const Content = ({ onSubmit }: ContentProps) => {
 
                 <Box mt={3} sx={{ display: 'flex', justifyContent: 'space-around' }}>
                     <Button type="submit" variant="contained" sx={{ backgroundColor: '#002366' }}>
-                        Save
+                        Add
                     </Button>
                     <Button
                         type="button"

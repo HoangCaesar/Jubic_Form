@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 
 // Types
 import Blog from '../../models/blog';
@@ -26,4 +26,4 @@ const BlogItem = ({ blog }: { blog: Blog }) => {
     );
 };
 
-export default BlogItem;
+export default memo(BlogItem);

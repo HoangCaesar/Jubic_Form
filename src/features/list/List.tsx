@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 // Types
 import Blog from '../../models/blog';
 
 // Project Import
-import { getData } from '../../utils/dataHandler';
-import { BlogItem } from '../../components';
+import { getData, deleteData } from '../../utils/dataHandler';
+import { BlogItem, ListModal } from '../../components';
 import './list.css';
 
 // Redux
@@ -18,8 +18,10 @@ const List = () => {
     // If its state changes, it means a new blog is added ---> reload our list
     const isNewItemAdded = useAppSelector(blogSelectors.selectBlogIsAdded);
 
-    const [blogList, setBlogList] = useState<Blog[]>([]);
     const listRef = useRef<any>([]);
+    const [blogList, setBlogList] = useState<Blog[]>([]);
+    const [selectedBlog, setSelectedBlog] = useState<Blog>();
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         const data = getData();
@@ -30,7 +32,7 @@ const List = () => {
         setBlogList(blogList);
     }, [isNewItemAdded]);
 
-    const onDragStartCircle = (e: any) => {
+    const handleMouseMove = (e: any) => {
         for (const item of listRef.current) {
             const rect = item.getBoundingClientRect(),
                 x = e.clientX - rect.left,
@@ -41,19 +43,35 @@ const List = () => {
         }
     };
 
+    // For Modal
+    const handleOpen = (item: Blog) => {
+        setSelectedBlog(item);
+        setOpen(true);
+    };
+
+    const handleClose = useCallback(() => setOpen(false), []);
+
+    const handleDelete = () => {
+        
+    };
+
     return (
-        <div className="list" onMouseMove={(e) => onDragStartCircle(e)}>
-            {blogList.map((item, index) => {
-                return (
-                    <div
-                        key={`${item.author}-${index}`}
-                        ref={(el) => (listRef.current[index] = el)}
-                    >
-                        <BlogItem blog={item} />
-                    </div>
-                );
-            })}
-        </div>
+        <>
+            <div className="list" onMouseMove={(e) => handleMouseMove(e)}>
+                {blogList.map((item, index) => {
+                    return (
+                        <div
+                            key={`${item.author}-${index}`}
+                            ref={(el) => (listRef.current[index] = el)}
+                            onClick={() => handleOpen(item)}
+                        >
+                            <BlogItem blog={item} />
+                        </div>
+                    );
+                })}
+            </div>
+            {open ? <ListModal isOpen={open} blog={selectedBlog} onClose={handleClose} /> : ''}
+        </>
     );
 };
 
