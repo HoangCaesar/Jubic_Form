@@ -95,13 +95,6 @@ const ListModal = ({ isOpen, blog, onClose, onDelete }: ListModalProps) => {
                         >
                             Delete
                         </Button>
-                        <Button
-                            variant="contained"
-                            onClick={() => handleDelete(blog)}
-                            sx={{ backgroundColor: '#4caf50' }}
-                        >
-                            Edit
-                        </Button>
                     </Box>
                 </Box>
             </Modal>

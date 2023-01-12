@@ -70,10 +70,6 @@ const List = () => {
         setOpen(false);
     }, []);
 
-    const handleEdit = useCallback(() => {
-
-    }, []);
-
     return (
         <>
             <div className="list" onMouseMove={(e) => handleMouseMove(e)}>
