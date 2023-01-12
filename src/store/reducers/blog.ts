@@ -14,7 +14,7 @@ const initialState: BlogState = {
 
 // ==============================|| SLICE - BLOG ||============================== //
 
-const Blog = createSlice({
+const blogSlice = createSlice({
     name: 'blog',
     initialState,
     reducers: {
@@ -24,11 +24,11 @@ const Blog = createSlice({
     },
 });
 
-const selectBlogIsAdded = (state: BlogState) => state.isAdded;
+const selectBlogIsAdded = (state: any) => state.blog.isAdded;
 
 // selectors
 export { selectBlogIsAdded };
 // actions
-export const { newItemIsAdded } = Blog.actions;
+export const { newItemIsAdded } = blogSlice.actions;
 
-export default Blog.reducer;
+export default blogSlice.reducer;

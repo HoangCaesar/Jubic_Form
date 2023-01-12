@@ -10,4 +10,4 @@ const getData = () => {
     return data;
 };
 
-export { setData };
+export { setData, getData };

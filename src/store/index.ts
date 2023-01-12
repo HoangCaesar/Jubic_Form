@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 // project import
-import blogReducers from './reducers';
+import blogReducers from './reducers/blog';
 
 // ==============================|| REDUX TOOLKIT - MAIN STORE ||============================== //
 
